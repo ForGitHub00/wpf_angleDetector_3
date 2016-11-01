@@ -5,9 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:wpf_angleDetector_3.Controls"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="ScrollViewerStyle"
+                      TargetType="{x:Type ScrollViewer}">
+            <Setter Property="HorizontalScrollBarVisibility"
+                    Value="Visible" />
+            <Setter Property="VerticalScrollBarVisibility"
+                      Value="Visible" />
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
-        <ScrollViewer HorizontalScrollBarVisibility="Visible" PanningMode="Both">
-            <Canvas x:Name="cnv" MouseWheel="cnv_MouseWheel" Background="White" Grid.IsSharedSizeScope="True">
+        <ScrollViewer x:Name="ScrollViewer" Style="{StaticResource ScrollViewerStyle}" HorizontalScrollBarVisibility="Visible" PanningMode="Both" PreviewMouseDown="ScrollViewer_PreviewMouseDown">
+            <Canvas x:Name="cnv" MouseWheel="cnv_MouseWheel" Background="White" Grid.IsSharedSizeScope="True" MouseMove="cnv_MouseMove" MouseUp="cnv_MouseUp" Width="8000" Height="8000">
                 <Canvas.RenderTransform>
                     <ScaleTransform x:Name="st"/>
                 </Canvas.RenderTransform>
