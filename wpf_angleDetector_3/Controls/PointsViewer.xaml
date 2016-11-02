@@ -9,19 +9,28 @@
         <Style x:Key="ScrollViewerStyle"
                       TargetType="{x:Type ScrollViewer}">
             <Setter Property="HorizontalScrollBarVisibility"
-                    Value="Visible" />
+                    Value="Hidden" />
             <Setter Property="VerticalScrollBarVisibility"
-                      Value="Visible" />
+                      Value="Hidden" />
         </Style>
+        <ControlTemplate x:Key="NoScroll">
+            <ItemsPresenter></ItemsPresenter>
+        </ControlTemplate>
     </UserControl.Resources>
 
     <Grid>
-        <ScrollViewer x:Name="ScrollViewer" Style="{StaticResource ScrollViewerStyle}" HorizontalScrollBarVisibility="Visible" PanningMode="Both" PreviewMouseDown="ScrollViewer_PreviewMouseDown">
-            <Canvas x:Name="cnv" MouseWheel="cnv_MouseWheel" Background="White" Grid.IsSharedSizeScope="True" MouseMove="cnv_MouseMove" MouseUp="cnv_MouseUp" Width="8000" Height="8000">
-                <Canvas.RenderTransform>
-                    <ScaleTransform x:Name="st"/>
-                </Canvas.RenderTransform>
-            </Canvas>
+        <ScrollViewer x:Name="ScrollViewer" Style="{StaticResource ScrollViewerStyle}" HorizontalScrollBarVisibility="Visible" PanningMode="Both" MouseWheel="ScrollViewer_MouseWheel" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <Grid x:Name="grid" Background="#FFF92020"  Width="{Binding ElementName=cnv, Path=ActualWidth}">
+                <Grid.RenderTransform>
+                    <MatrixTransform/>
+                </Grid.RenderTransform>
+                <Canvas x:Name="cnv"  MouseWheel="MouseWheelZoom" Background="#FFF9D1D1" Grid.IsSharedSizeScope="True" Height="3700">
+                    
+                    <Canvas.LayoutTransform>
+                        <MatrixTransform/>
+                    </Canvas.LayoutTransform>
+                </Canvas>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </UserControl>

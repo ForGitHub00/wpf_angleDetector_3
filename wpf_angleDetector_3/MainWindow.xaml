@@ -8,6 +8,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="800">
     <Grid>
-        <my:PointsViewer/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <my:PointsViewer x:Name="inputData"/>
+        <my:PointsViewer x:Name="outputData" Grid.Row="1"/>
     </Grid>
 </Window>
